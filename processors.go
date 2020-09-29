@@ -365,11 +365,11 @@ func passEscapeSequence(write func(c byte) error, input string, i int) int {
 	case c >= '0' && c <= '7':
 		i = passOctalSequence(write, input, i+1)
 	case c == 'x':
-		i = passHexadecimalSequence(write, input, i+1, 2)
+		i = passHexadecimalSequence(write, input, i, 2)
 	case c == 'u':
-		i = passHexadecimalSequence(write, input, i+1, 4)
+		i = passHexadecimalSequence(write, input, i, 4)
 	case c == 'U':
-		i = passHexadecimalSequence(write, input, i+1, 8)
+		i = passHexadecimalSequence(write, input, i, 8)
 	}
 	return i
 }
@@ -382,12 +382,8 @@ func passOctalSequence(write func(c byte) error, input string, i int) int {
 }
 
 func passHexadecimalSequence(write func(c byte) error, input string, i int, maxlen int) int {
-	for endAt := i + maxlen; i < endAt && i < len(input); i++ {
-		c := input[i]
-		if !isHexadecimalCharacter(c) {
-			break
-		}
-		write(c)
+	for endAt := i + maxlen; i < endAt && i < len(input) && isHexadecimalCharacter(input[i]); i++ {
+		write(input[i])
 	}
 	return i - 1
 }
