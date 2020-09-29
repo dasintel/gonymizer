@@ -377,7 +377,7 @@ func passEscapeSequence(write func(c byte) error, input string, i int) int {
 func passOctalSequence(write func(c byte) error, input string, i int) int {
 	for endAt := i + 2; i < endAt && i < len(input); i++ {
 		c := input[i]
-		if c < '0' || c > '7' {
+		if input[i] < '0' || input[i] > '7' {
 			break
 		}
 		write(c)
