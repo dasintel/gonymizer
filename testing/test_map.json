@@ -415,7 +415,8 @@
                     "Max": 0,
                     "Min": 0,
                     "Variance": 0,
-                    "Comment": ""
+                    "Comment": "",
+                    "Exemptions": "^steph@example\\.com$"
                 }
             ],
             "Comment": ""

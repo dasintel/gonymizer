@@ -231,7 +231,7 @@
                     "Min": 0,
                     "Variance": 0,
                     "Comment": "",
-                    "Excemptions": "skip.*me"
+                    "Exemptions": "skip.*me"
                 }
             ]
         },
